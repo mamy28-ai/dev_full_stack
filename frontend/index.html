@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Gestion de l'école</h1>
+    </header>
+    <nav>
+        <button onclick="afficher('Profs')">Profs</button>
+        <button onclick="afficher('Elèves')">Elèves</button>
+        <button onclick="afficher('Classes')">Classes</button>
+        <button onclick="afficher('Matière')">Matière</button>
+        <button onclick="afficher('Note')">Note</button>
+    </nav>
+    <section id="Profs" class="page active">
+        <form id="formProf">
+            <input type="text" id="nom" placeholder="Nom du Professeur" required>
+            <input type="text" id="prenom" placeholder="Prénom"required>
+            <input type="text" id="matiere" placeholder="Matière"required>
+            <button type="submit">Ajoute</button>
+        </form>
+        <table border="0">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Matière</th>
+                </tr>
+            </thead>
+        
+            <tbody id="listeProfs"></tbody>
+        </table>
+         </section>
+    <section id="Elèves" class="page">
+        <input type="text" placeholder="Nom de l'élève " required>
+        <input type="text" placeholder="Prénom"required>
+        <input type="date" required>
+        <input type="number" placeholder="id_classe"required>
+        <button onclick="mettre('ajoute')">Ajoute</button>
+    </section>
+    <section id="Classes" class="page">
+        <input type="number" placeholder="ID" required>
+        <input type="text" placeholder="Nom du classe" required>
+        <input type="text" placeholder="niveau"required>
+        <button onclick="mettre('ajoute')">Ajoute</button>
+    </section>
+    <section id="Matière" class="page">
+        <input type="text">
+    </section>
+    <section id="Note" class="page">
+        <input type="text">
+    </section>
+    <script src="js/app.js"></script>
+</body>
+</html>

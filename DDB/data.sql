@@ -1,0 +1,15 @@
+create user ecole_user with password '123456';
+
+GRANT ALL PRIVILEGES ON DATABASE ecole TO ecole_user;
+
+grant all on schema public to ecole_user;
+
+GRANT ALL PRIVILEGES ON  SCHEMA public TO  ecole_user;
+
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO ecole_user;
+
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO ecole_user;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL PRIVILEGES ON TABLES TO ecole_user;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL PRIVILEGES ON SEQUENCES TO ecole_user;
