@@ -38,8 +38,7 @@ create table note(
     Foreign Key (id_eleve) REFERENCES élèves (id_eleve),
     Foreign Key (id_matiere) REFERENCES matiere (id_matiere)
 );
-DROP table note;
-drop table matiere;
-drop table élèves;
-drop table classe;
-drop table profs;
+
+
+ALTER TABLE classe
+ADD COLUMN nbr_eleve VARCHAR (20);
