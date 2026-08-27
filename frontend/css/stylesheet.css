@@ -1,0 +1,196 @@
+:root {
+  --noire-de-jais: #022B3A;
+  --lavande: #E1E5F2;
+  --sarcele: #1F7A8C;
+  --bleu-fonce: #1F7A8C;
+  --vert: #15803d;
+  --rouge: #dc2626;
+  --rouge-fonce: #b91c1c;
+  --bordure: #e5e7eb;
+  --gris-clair: #f9fafb;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #1f2937;
+}
+
+/* HEADER */
+header {
+  background: linear-gradient(135deg, var(--noire-de-jais), var(--lavande));
+  padding: 20px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+header h1 {
+  color: #fff;
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.boutons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.boutons button {
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  background: rgba(255,255,255,0.18);
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.boutons button:hover {
+  background: rgba(255,255,255,0.32);
+}
+
+/* Ajoutée en JS sur le bouton du menu cliqué */
+.boutons button.actif {
+  background: #fff;
+  color: var(--rose-fonce);
+}
+
+/* SECTIONS / PAGES */
+.page {
+  display: none;
+  max-width: 1000px;
+  margin: 32px auto;
+  padding: 0 24px;
+}
+
+.page.active {
+  display: block;
+}
+
+/* FORMULAIRES */
+form {
+  background: var(--gris-clair);
+  border: 1px solid var(--bordure);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 24px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Inputs hors formulaire (ex : section Elèves, Matière, Note) */
+.page > input {
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+  margin-right: 8px;
+}
+
+.page > button {
+  background: var(--vert);
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.page > button:hover {
+  background: #116932;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="number"] {
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  flex: 1;
+  min-width: 160px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--sarcele);
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+}
+
+form button[type="submit"] {
+  background: var(--vert);
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+form button[type="submit"]:hover {
+  background: #116932;
+}
+
+/* TABLEAUX */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+thead th {
+  background: var(--sarcele);
+  color: #fff;
+  text-align: left;
+  padding: 14px 16px;
+  font-size: 0.95rem;
+}
+
+tbody td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--bordure);
+  font-size: 0.95rem;
+  vertical-align: middle;
+}
+
+tbody tr:nth-child(even) {
+  background: var(--gris-clair);
+}
+
+tbody tr:hover {
+  background: #eef2ff;
+}
+
+#sup{
+    color: white;
+    background-color: red;
+    padding: 10px;
+    border: 1 solid gray;
+    border-radius: 10px;
+}
+
+#edit{
+    color: white;
+    background-color: #f57a00;
+    padding: 10px;
+    border: 1 solid grey;
+    border-radius: 10px;
+}
