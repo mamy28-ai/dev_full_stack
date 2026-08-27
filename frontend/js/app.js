@@ -7,6 +7,8 @@ function afficher(page) {
 }
 
 
+
+
 document.getElementById("formProf").addEventListener("submit", async function(event) {
 
     event.preventDefault();
@@ -39,7 +41,6 @@ document.getElementById("formProf").addEventListener("submit", async function(ev
 
             document.getElementById("formProf").reset();
 
-            // Actualiser la liste
             chargerProfs();
 
         } else {
@@ -87,6 +88,14 @@ async function chargerProfs() {
                     <td>${prof.nom}</td>
                     <td>${prof.prénom}</td>
                     <td>${prof.matière}</td>
+                    <td>
+                        <button onclick="supprimerProf(${prof.id_prof})" id="sup">
+                        <i class="fa-solid fa-trash"></i>
+                        </button>
+                        <button onclick="editProf(${prof.id_prof})" id="edit">
+                        <i class="fa-solid fa-pen"></i>
+                        </button>
+                    </td>
                 </tr>
             `;
 
@@ -101,3 +110,126 @@ async function chargerProfs() {
 
 
 chargerProfs();
+
+async function supprimerProf(id) {
+
+    const confirmation = confirm(
+        "Voulez-vous vraiment supprimer ce professeur ?"
+    );
+
+    if (!confirmation) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            `http://localhost:3000/api/profs/${id}`,
+            {
+                method: "DELETE"
+            }
+        );
+
+        const data = await response.json();
+
+        if (response.ok) {
+
+            alert("Professeur supprimé avec succès !");
+
+
+            chargerProfs();
+
+        } else {
+
+            alert("Erreur : " + (data.error || data.message));
+
+        }
+
+    } catch (error) {
+
+        console.error("Erreur :", error);
+
+        alert("Impossible de contacter le serveur.");
+    }
+}
+
+ function editProf(id) {
+  
+        const confirmation = confirm(
+            "Voulez-vous vraiment modifier ce professeur ?"
+        );
+
+        if (!confirmation) {
+            return;
+        }
+
+        const modif= document.getElementById("modif");
+
+
+
+        modif.innerHTML=`
+            <div id="modifier">
+                <form id="fromModif">
+                    <input type="text" id="anarana" placeholder="Nom de l'élève " required>
+                    <input type="text" id="fanampiny" placeholder="Prénom"required>
+                    <input type="text" id="atao" placeholder="Matière"required>
+                    <button type="submit" onclick="valide"> Enregistre</button>
+                    <button type="button" id="btn"> Annuler</button>
+                </form>
+            </div>
+        `;
+
+   
+    
+    document.getElementById("btn").addEventListener("click", function(){
+        window.location.href="index.html";
+    });
+
+        document.getElementById("fromModif").addEventListener("submit", async function (event) {
+            event.preventDefault();
+            valide(id);
+
+       });
+
+    }
+    
+     async function valide(id){
+        const nom = document.getElementById("anarana").value;
+        const prenom = document.getElementById("fanampiny").value;
+        const matiere = document.getElementById("atao").value;
+
+    try{
+        const response = await fetch(`http://localhost:3000/api/profs/${id}`,
+           { 
+            method: "PUT",
+            
+            headers: {
+            "Content-Type": "application/json"
+            },
+
+        body: JSON.stringify({
+            Nom: nom,
+            prénom: prenom,
+            matière: matiere
+            })
+
+           }
+        );
+        if(!response.ok){
+            throw new error("erreur http:", + response.status);
+        }
+        const data = response.json();
+
+        console.log(data);
+
+       
+         window.location.href ="index.html"
+
+    }catch(error){
+        console.error("Erreur:", error);
+
+        alert("Impossible de modifier le professeur.");
+    }
+
+
+}
