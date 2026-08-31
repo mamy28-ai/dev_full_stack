@@ -4,19 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="F:\Aurix formation\devoir\frontend\css\stylesheet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 </head>
 <body>
     <header>
         <h1>Gestion de l'école</h1>
+        <div class="boutons">
+            <button onclick="afficher('Profs')">Profs</button>
+            <button onclick="afficher('Elèves')">Elèves</button>
+            <button onclick="afficher('Classes')">Classes</button>
+            <button onclick="afficher('Matière')">Matière</button>
+            <button onclick="afficher('Note')">Note</button>
+        </div>
     </header>
-    <nav>
-        <button onclick="afficher('Profs')">Profs</button>
-        <button onclick="afficher('Elèves')">Elèves</button>
-        <button onclick="afficher('Classes')">Classes</button>
-        <button onclick="afficher('Matière')">Matière</button>
-        <button onclick="afficher('Note')">Note</button>
-    </nav>
     <section id="Profs" class="page active">
         <form id="formProf">
             <input type="text" id="nom" placeholder="Nom du Professeur" required>
@@ -24,6 +25,7 @@
             <input type="text" id="matiere" placeholder="Matière"required>
             <button type="submit">Ajoute</button>
         </form>
+        <div id="modif"></div>
         <table border="0">
             <thead>
                 <tr>
@@ -31,11 +33,13 @@
                     <th>Nom</th>
                     <th>Prénom</th>
                     <th>Matière</th>
+                    <th>Action</th>
                 </tr>
             </thead>
         
             <tbody id="listeProfs"></tbody>
         </table>
+    
          </section>
     <section id="Elèves" class="page">
         <input type="text" placeholder="Nom de l'élève " required>
@@ -56,6 +60,6 @@
     <section id="Note" class="page">
         <input type="text">
     </section>
-    <script src="js/app.js"></script>
+    <script src="F:\Aurix formation\devoir\frontend\js\app.js"></script>
 </body>
 </html>

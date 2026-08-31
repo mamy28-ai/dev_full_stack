@@ -110,3 +110,216 @@ async function chargerProfs() {
 
 
 chargerProfs();
+
+async function supprimerProf(id) {
+
+    const confirmation = confirm(
+        "Voulez-vous vraiment supprimer ce professeur ?"
+    );
+
+    if (!confirmation) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            `http://localhost:3000/api/profs/${id}`,
+            {
+                method: "DELETE"
+            }
+        );
+
+        const data = await response.json();
+
+        if (response.ok) {
+
+            alert("Professeur supprimé avec succès !");
+
+
+            chargerProfs();
+
+        } else {
+
+            alert("Erreur : " + (data.error || data.message));
+
+        }
+
+    } catch (error) {
+
+        console.error("Erreur :", error);
+
+        alert("Impossible de contacter le serveur.");
+    }
+}
+
+ function editProf(id) {
+  
+        const confirmation = confirm(
+            "Voulez-vous vraiment modifier ce professeur ?"
+        );
+
+        if (!confirmation) {
+            return;
+        }
+
+        const modif= document.getElementById("modif");
+
+
+
+        modif.innerHTML=`
+            <div id="modifier">
+                <form id="fromModif">
+                    <input type="text" id="anarana" placeholder="Nom de l'élève " required>
+                    <input type="text" id="fanampiny" placeholder="Prénom"required>
+                    <input type="text" id="atao" placeholder="Matière"required>
+                    <button type="submit" onclick="valide"> Enregistre</button>
+                    <button type="button" id="btn"> Annuler</button>
+                </form>
+            </div>
+        `;
+
+   
+    
+    document.getElementById("btn").addEventListener("click", function(){
+        window.location.href="index.html";
+    });
+
+        document.getElementById("fromModif").addEventListener("submit", async function (event) {
+            event.preventDefault();
+            valide(id);
+
+       });
+
+    }
+    
+     async function valide(id){
+        const nom = document.getElementById("anarana").value;
+        const prenom = document.getElementById("fanampiny").value;
+        const matiere = document.getElementById("atao").value;
+
+    try{
+        const response = await fetch(`http://localhost:3000/api/profs/${id}`,
+           { 
+            method: "PUT",
+            
+            headers: {
+            "Content-Type": "application/json"
+            },
+
+        body: JSON.stringify({
+            Nom: nom,
+            prénom: prenom,
+            matière: matiere
+            })
+
+           }
+        );
+        if(!response.ok){
+            throw new error("erreur http:", + response.status);
+        }
+        const data = response.json();
+
+        console.log(data);
+
+       
+         window.location.href ="index.html"
+
+    }catch(error){
+        console.error("Erreur:", error);
+
+        alert("Impossible de modifier le professeur.");
+    }
+
+
+}
+
+//CLASSE
+
+document.getElementById("formClasse").addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const nomClasse = document.getElementById("nomClasse").value;
+    const niveau = document.getElementById("niveau").value;
+    const nbr = document.getElementById("nbr").value;
+
+    try {
+
+        const response = await fetch("http://localhost:3000/api/classes", {
+            method : "POST",
+
+            headers : {
+                "content-type": "application/json"
+            },
+
+            body : JSON.stringify({
+
+                    nom_classe : nomClasse,
+                    niveau : niveau,
+                    nbr_eleve : nbr
+                })
+            });
+
+            const data = await response.json();
+
+        if (response.ok) {
+
+            alert("classe ajouté avec succès !");
+
+            document.getElementById("formClasse").reset();
+
+            chargerClasse();
+        }else{
+            alert: ("erreur :" + (data.message || data.error));
+        }
+
+    } catch (error){
+        console.error ("erreur :" ,error);
+        alert ("impossible de contacter le serveur");
+    }
+
+});
+
+
+    async function chargerClasse() {
+         try {
+
+        const response = await fetch("http://localhost:3000/api/classes");
+
+        if (!response.ok) {
+            throw new Error("Erreur HTTP : " + response.status);
+        }
+
+        const classes = await response.json();
+
+        console.log("classes ok :", classes);
+
+        const liste = document.getElementById("listeClasses");
+
+        if (!liste) {
+            throw new Error("L'élément #listeClasses n'existe pas dans le HTML");
+        }
+
+        liste.innerHTML = "";
+
+        classes.forEach(classe => {
+
+            liste.innerHTML += `
+                <tr>
+                    <td>${classe.id_classe}</td>
+                    <td>${classe.nom_classe}</td>
+                    <td>${classe.niveau}</td>
+                    <td>${classe.nbr_eleve}</td>
+                </tr>
+            `;
+
+        });
+
+    } catch (error) {
+
+        console.error("Erreur :", error);
+
+    }
+}
+
+chargerClasse();

@@ -194,3 +194,10 @@ tbody tr:hover {
     border: 1 solid grey;
     border-radius: 10px;
 }
+
+#btn{
+  color: white;
+  background-color: #15803d;
+  padding: 10px;
+  border-radius: 5px;
+}

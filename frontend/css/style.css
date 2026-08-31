@@ -29,18 +29,20 @@ header h1{
 nav{
     display: flex;
     flex-direction: row;
-    margin: 1rem 0 2rem 0;
+    margin: 0 0 2rem 0;
+    justify-content: space-between;
+    background-color: blue;
 }
 
 nav button{
     display: flex;
     flex-direction: row;
     margin-left: 2rem;
-    border: 1px solid black;
-    border-radius: 10px;
+    border: 1px solid blue;
     background-color: blue;
     padding: 5px 10px;
     color: white;
+    font-size: larger;
 }
 
 nav button:hover{
@@ -54,6 +56,7 @@ section{
 section input{
     margin-left: 2rem;
     padding: 5px;
+    margin-bottom: 2rem;
 }
 section button{
     color: white;
@@ -80,4 +83,30 @@ td {
     text-align: left;
     border-bottom: 1px solid #ddd;
     margin-left: 2rem;
+}
+
+#sup{
+    color: white;
+    background-color: red;
+    padding: 10px;
+    border:1 solid grey;
+    border-radius: 10px;
+}
+
+
+#edit{
+    color: white;
+    background-color: #f57a00;
+    padding: 10px;
+    border:1 solid grey;
+    border-radius: 10px;
+}
+
+#modif{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #001514;
+    border-radius: 10px;
+    background-color: #fbfbff;
 }

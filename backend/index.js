@@ -97,22 +97,22 @@ app.put("/api/profs/:id", async (req, res) => {
         const { id } = req.params;
 
         const {
-            nom,
+            Nom,
             prénom,
-            matiere
+            matière
         } = req.body;
 
         const result = await pool.query(
             `UPDATE profs
-            SET nom = $1,
+            SET Nom = $1,
                 prénom = $2,
                 matière = $3
             WHERE id_prof = $4
             RETURNING *`,
             [
-                nom,
+                Nom,
                 prénom,
-                matiere,
+                matière,
                 id
             ]
         );
