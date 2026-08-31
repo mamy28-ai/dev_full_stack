@@ -18,8 +18,8 @@ create table élèves(
     nom varchar (100) not null,
     prenom varchar (100) not null,
     date_naissance date,
-    id_classe int,
-    Foreign Key (id_classe) REFERENCES classe(id_classe)
+     id_classe int,
+    FOREIGN Key (id_classe) REFERENCES classe(id_classe) on delete CASCADE
 );
 
 create table matiere(
@@ -170,7 +170,7 @@ CREATE TABLE historique_scolaire (
             )
         ),
 
-    observation TEXT
+    observation TEXT,
     FOREIGN KEY (id_eleve) REFERENCES élèves (id_eleve) ON DELETE CASCADE,
     FOREIGN KEY (id_classe) REFERENCES classe (id_classe) ON DELETE RESTRICT,
     FOREIGN KEY (id_annee) REFERENCES annees_scolaires (id_annee) ON DELETE RESTRICT
@@ -420,7 +420,7 @@ CREATE TABLE cahier_texte (
     FOREIGN KEY (id_matiere)REFERENCES matiere(id_matiere) ON DELETE CASCADE
 );
 
-CREATE utilisateurs (
+CREATE TABLE utilisateurs (
     id_utilisateur SERIAL PRIMARY KEY,
     nom VARCHAR(100) NOT NULL,
     prenom VARCHAR(100) NOT NULL,
@@ -472,7 +472,7 @@ CREATE TABLE notifications (
     message TEXT NOT NULL,
     type_notification VARCHAR(50),
     lu BOOLEAN DEFAULT FALSE,
-    date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    FOREIGN KEY (id_utilisateur)REFERENCES utilisateurs(id_utilisateur)ON DELETE CASCADE
+    date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_utilisateur) REFERENCES utilisateurs(id_utilisateur) ON DELETE CASCADE
 );
 
