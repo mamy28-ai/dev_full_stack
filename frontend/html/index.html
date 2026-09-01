@@ -4,10 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="F:\Aurix formation\devoir\frontend\css\stylesheet.css">
+    <link rel="stylesheet" href="D:\cal\AURIX\projets\dev_full_stack\frontend\css\stylesheet.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 </head>
 <body>
+    <div id="overlay" class="overlay"></div>
+    <aside id="sidebar" class="sidebar">
+        <div class="user-profile">
+            <span class="username">Menu Direction</span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="active">
+                    <a href="#admin">
+                        <span class="icon"><i class="fa-solid fa-user-shield"></i></span>
+                        <span class="label">Administrateur/Direction</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#personnel">
+                        <span class="icon"><i class="fa-solid fa-id-card"></i></span>
+                        <span class="label">Personnel administratif</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#enseignants">
+                        <span class="icon"><i class="fa-solid fa-chalkboard-user"></i></span>
+                        <span class="label">Enseignants</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#parents">
+                        <span class="icon"><i class="fa-solid fa-users"></i></span>
+                        <span class="label">Parents</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#eleves">
+                        <span class="icon"><i class="fa-solid fa-graduation-cap"></i></span>
+                        <span class="label">Elèves</span>
+                    </a>
+                </li>
+                <li class="separator"></li>
+                <li>
+                    <a href="login.html">
+                        <span class="icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+                        <span class="label">Déconnexion</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
     <header>
         <h1>Gestion de l'école</h1>
         <div class="boutons">
@@ -16,6 +64,7 @@
             <button onclick="afficher('Classes')">Classes</button>
             <button onclick="afficher('Matière')">Matière</button>
             <button onclick="afficher('Note')">Note</button>
+            <button id="menu-btn" class="menu-btn">☰</button>
         </div>
     </header>
     <section id="Profs" class="page active">
@@ -60,6 +109,6 @@
     <section id="Note" class="page">
         <input type="text">
     </section>
-    <script src="F:\Aurix formation\devoir\frontend\js\app.js"></script>
+    <script src="D:\cal\AURIX\projets\dev_full_stack\frontend\js\app.js"></script>
 </body>
 </html>
