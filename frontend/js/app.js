@@ -8,7 +8,45 @@ function afficher(page) {
 
 
 
+document.addEventListener('DOMContentLoaded', () => {
+    const menuBtn = document.getElementById('menu-btn');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
 
+    function openMenu() {
+        sidebar.classList.add('open');
+        overlay.classList.add('active');
+    }
+
+    function closeMenu() {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('active');
+    }
+
+    if (menuBtn) {
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (sidebar.classList.contains('open')) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+
+        menuBtn.addEventListener('mouseenter', openMenu);
+    }
+
+    if (sidebar) {
+        sidebar.addEventListener('mouseleave', closeMenu);
+    }
+
+    if (overlay) {
+        overlay.addEventListener('click', closeMenu);
+    }
+
+    chargerProfs();
+    chargerClasse();
+});
 document.getElementById("formProf").addEventListener("submit", async function(event) {
 
     event.preventDefault();
