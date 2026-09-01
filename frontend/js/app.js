@@ -322,4 +322,5 @@ document.getElementById("formClasse").addEventListener("submit", async function 
     }
 }
 
+
 chargerClasse();
