@@ -348,6 +348,14 @@ document.getElementById("formClasse").addEventListener("submit", async function 
                     <td>${classe.nom_classe}</td>
                     <td>${classe.niveau}</td>
                     <td>${classe.nbr_eleve}</td>
+                    <td>
+                     <button onclick="supprimerClasse(${classe.id_classe})" id="sup">
+                        <i class="fa-solid fa-trash"></i>
+                        </button>
+                        <button onclick="editClasse(${classe.id_classe})" id="edit">
+                        <i class="fa-solid fa-pen"></i>
+                    </button>
+                    </td>
                 </tr>
             `;
 
@@ -361,3 +369,118 @@ document.getElementById("formClasse").addEventListener("submit", async function 
 }
 
 chargerClasse();
+
+async function supprimerClasse(id) {
+
+    const confirmation= confirm(
+        "Voulez-vous vraiment supprimer ce classe ?"
+    );
+
+    if(!confirmation){
+        return;
+    }
+    
+    try{
+        const response= await fetch(`http://localhost:3000/api/classes/${id}`,
+            {
+                method: "DELETE"
+
+            }
+        );
+
+        const data= await response.json();
+        if(response.ok){
+            alert("la classe est supprimer");
+        }else {
+
+            alert("Erreur : " + (data.error || data.message));
+
+        }
+
+    }catch(error){
+        console.error("Erreur :", error);
+
+        alert("Impossible de contacter le serveur.");   
+    }
+}
+
+function editClasse(id) {
+  
+    const confirmation = confirm(
+        "Voulez-vous vraiment modifier ce professeur ?"
+    );
+
+    if (!confirmation) {
+        return;
+    }
+
+    const modif= document.getElementById("modification");
+
+
+
+    modif.innerHTML=`
+        <div id="modifier">
+            <form id="fromModife">
+                <input type="text" id="classe" placeholder="Nom_classe" required>
+                <input type="text" id="niv" placeholder="Niveau"required>
+                <input type="text" id="combien" placeholder="Nbr_élève"required>
+                <button type="submit" onclick="valide"> Enregistre</button>
+                <button type="button" id="btn"> Annuler</button>
+            </form>
+        </div>
+    `;
+
+
+
+document.getElementById("btn").addEventListener("click", function(){
+    window.location.href="index.html";
+});
+
+    document.getElementById("fromModife").addEventListener("submit", async function (event) {
+        event.preventDefault();
+        valide(id);
+
+   });
+
+}
+
+ async function valide(id){
+    const classe = document.getElementById("classe").value;
+    const niv = document.getElementById("niv").value;
+    const combien = document.getElementById("combien").value;
+
+try{
+    const response = await fetch(`http://localhost:3000/api/classes/${id}`,
+       { 
+        method: "PUT",
+        
+        headers: {
+        "Content-Type": "application/json"
+        },
+
+    body: JSON.stringify({
+        nom_classe: classe,
+        niveau: niv,
+        nbr_eleve: combien
+        })
+
+       }
+    );
+    if(!response.ok){
+        throw new error("erreur http:", + response.status);
+    }
+    const data = response.json();
+
+    console.log(data);
+
+   
+     window.location.href ="index.html"
+
+}catch(error){
+    console.error("Erreur:", error);
+
+    alert("Impossible de modifier le classe.");
+}
+
+
+}
