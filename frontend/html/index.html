@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="D:\cal\AURIX\projets\dev_full_stack\frontend\css\stylesheet.css">
+    <link rel="stylesheet" href="F:\Aurix formation\devoir\frontend\css\stylesheet.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 </head>
 <body>
@@ -91,17 +91,35 @@
     
          </section>
     <section id="Elèves" class="page">
-        <input type="text" placeholder="Nom de l'élève " required>
-        <input type="text" placeholder="Prénom"required>
-        <input type="date" required>
-        <input type="number" placeholder="id_classe"required>
-        <button onclick="mettre('ajoute')">Ajoute</button>
+        
+            <input type="text" placeholder="Nom de l'élève " required>
+            <input type="text" placeholder="Prénom"required>
+            <input type="date" required>
+            <input type="number" placeholder="id_classe"required>
+            <button onclick="mettre('ajoute')">Ajoute</button>
+        
+
     </section>
     <section id="Classes" class="page">
-        <input type="number" placeholder="ID" required>
-        <input type="text" placeholder="Nom du classe" required>
-        <input type="text" placeholder="niveau"required>
-        <button onclick="mettre('ajoute')">Ajoute</button>
+        <form id="formClasse">
+            <input type="text" id="nomClasse" placeholder="Nom du classe" required>
+            <input type="text" id="niveau" placeholder="niveau"required>
+            <input type="number" id="nbr" placeholder="nbr_élèves"required>
+            <button type="submit">Ajoute</button>
+        </form>
+        <div id="modification"></div>
+        <table border="0">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>nom_classe</th>
+                    <th>niveau</th>
+                    <th>nbr_élèves</th>
+                    <th>Action</th>
+                </tr>
+                <tbody id="listeClasses"></tbody>
+            </thead>
+        </table>
     </section>
     <section id="Matière" class="page">
         <input type="text">
@@ -109,6 +127,6 @@
     <section id="Note" class="page">
         <input type="text">
     </section>
-    <script src="D:\cal\AURIX\projets\dev_full_stack\frontend\js\app.js"></script>
+    <script src="F:\Aurix formation\devoir\frontend\js\app.js"></script>
 </body>
 </html>
