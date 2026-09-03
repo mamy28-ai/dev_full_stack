@@ -355,13 +355,13 @@ app.get("/api/classes/:id", async (req, res) => {
 app.post("/api/classes", async (req, res) => {
     try {
         const pool = createPool();
-        const { id_classe, nom_classe, niveau } = req.body;
+        const { nom_classe, niveau, nbr_eleve } = req.body;
 
         const result = await pool.query(
-            `INSERT INTO classe (id_classe, nom_classe, niveau)
+            `INSERT INTO classe ( nom_classe, niveau, nbr_eleve)
              VALUES ($1, $2, $3)
              RETURNING *`,
-            [id_classe, nom_classe, niveau]
+            [ nom_classe, niveau, nbr_eleve]
         );
 
         res.status(201).json(result.rows[0]);
@@ -376,15 +376,16 @@ app.put("/api/classes/:id", async (req, res) => {
     try {
         const pool = createPool();
         const { id } = req.params;
-        const { nom_classe, niveau } = req.body;
+        const { nom_classe, niveau, nbr_eleve } = req.body;
 
         const result = await pool.query(
             `UPDATE classe
              SET nom_classe = $1,
-                 niveau = $2
-             WHERE id_classe = $3
+                 niveau = $2,
+                 nbr_eleve = $3
+             WHERE id_classe = $4
              RETURNING *`,
-            [nom_classe, niveau, id]
+            [nom_classe, niveau, nbr_eleve, id]
         );
 
         if (result.rows.length === 0) {
@@ -423,6 +424,35 @@ app.delete("/api/classes/:id", async (req, res) => {
 
     } catch (error) {
         res.status(500).json({ error: error.message });
+    }
+});
+
+//endpoint user
+app.get("/api/user", async(req, res) =>{
+    try{
+        const pool= createPool();
+        const result= await pool.query(
+            "SELECT * FROM  utilisateurs ORDER BY id_utilisateur"
+        );
+        res.json(result.rows);
+    }catch (error){
+        res.status(500).json({error:error.message});
+    }
+});
+
+app.post("/api/user", async(req, res) =>{
+    try{
+        const pool= createPool();
+
+        const{nom, prenom, email, mot_de_passe, role}= req.body;
+        const result= await pool.query(
+            `INSERT INTO utilisateurs (nom, prenom, email, mot_de_passe,role) VALUES 
+            ($1, $2, $3, $4, $5) RETURNING*`,
+            [nom, prenom, email, mot_de_passe,role]
+        );
+        res.json(result.rows[0]);
+    }catch(error){
+        res.status(500).json({error: error.message});
     }
 });
 
