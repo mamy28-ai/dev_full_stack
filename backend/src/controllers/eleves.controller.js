@@ -4,11 +4,7 @@ export async function getAllEleves(req, res) {
     try {
         const pool = createPool();
         const result = await pool.query(
-            `SELECT e.*, c.nom_classe, c.niveau
-             FROM élèves e
-             LEFT JOIN classe c
-             ON e.id_classe = c.id_classe
-             ORDER BY e.id_eleve`
+           "SELECT * FROM élèves ORDER BY id_eleve"
         );
 
         res.json(result.rows);
@@ -23,11 +19,7 @@ export async function getEleveById(req, res) {
         const { id } = req.params;
 
         const result = await pool.query(
-            `SELECT e.*, c.nom_classe, c.niveau
-             FROM élèves e
-             LEFT JOIN classe c
-             ON e.id_classe = c.id_classe
-             WHERE e.id_eleve = $1`,
+            "SELECT * FROM élèves WHERE id_eleve = $1",
             [id]
         );
 
@@ -46,14 +38,14 @@ export async function getEleveById(req, res) {
 export async function createEleve(req, res) {
     try {
         const pool = createPool();
-        const { id_eleve, nom, prenom, date_naissance, id_classe } = req.body;
+        const { nom, prenom, date_naissance, id_classe } = req.body;
 
         const result = await pool.query(
             `INSERT INTO élèves
-             (id_eleve, nom, prenom, date_naissance, id_classe)
-             VALUES ($1, $2, $3, $4, $5)
+             (nom, prenom, date_naissance, id_classe)
+             VALUES ($1, $2, $3, $4)
              RETURNING *`,
-            [id_eleve, nom, prenom, date_naissance, id_classe]
+            [ nom, prenom, date_naissance, id_classe]
         );
 
         res.status(201).json(result.rows[0]);

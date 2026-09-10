@@ -1,23 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="f:\Aurix formation\devoir\frontend\css\login.css">
-    <title>sing up</title>
+
+    <title>Créer un compte</title>
+
+    <link rel="stylesheet" href="..\css\singup.css">
 </head>
+
 <body>
     <img src="F:\Aurix formation\devoir\frontend\image\444.jpg" alt="">
-    <div>
-        <h1 id="titre">WELCOM BACK</h1>
-        <p>Create your account to access all the features of our platform.</p>
-        <p id="error"></p>
-        <form action="log" id="form">
-            <input type="text" id="user" placeholder="Name_user" required>
-            <input type="password" id="pwd" placeholder="password" required>
+
+    <div class="container">
+
+        <form id="signupForm">
+
+            <h1>Créer un compte</h1>
+
+            <p>Inscrivez-vous pour accéder à votre compte</p>
+
+            <div class="input-group">
+                <label>Nom</label>
+                <input
+                    type="text"
+                    id="nom"
+                    placeholder="Entrez votre nom"
+                    required
+                >
+            </div>
+
+            <div class="input-group">
+                <label>Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Entrez votre email"
+                    required
+                >
+            </div>
+
+            <div class="input-group">
+                <label for="role">Rôle</label>
+            
+                <select id="role" required>
+                    <option value="">-- Choisissez votre rôle --</option>
+                    <option value="PARENT">Parents</option>
+                    <option value="ELEVE">Elève</option>
+                    <option value="PROF">Professeur</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Mot de passe</label>
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Entrez votre mot de passe"
+                    required
+                >
+            </div>
+
+            <div class="input-group">
+                <label>Confirmer le mot de passe</label>
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Confirmez votre mot de passe"
+                    required
+                >
+            </div>
+
+            <p id="message"></p>
+
+            <button type="submit" id="btn">
+                Créer mon compte
+            </button>
+
+            <p class="login-link">
+                Vous avez déjà un compte ?
+                <a href="login.html">Se connecter</a>
+            </p>
+
         </form>
-        <button id="btn">Login</button>
+
     </div>
-    <script src="F:\Aurix formation\devoir\frontend\js\login.js"></script>
+
+    <script src="js/signup.js"></script>
+
 </body>
 </html>

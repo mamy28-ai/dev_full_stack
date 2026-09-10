@@ -7,7 +7,8 @@ import classesRoutes from "./routes/classes.routes.js";
 import usersRoutes from "./routes/users.routes.js";
 import enseignantsRoutes from "./routes/enseignants.rotutes.js";
 import noteRoutes from "./routes/note.routes.js";
-import matiereRoutes from "./routes/matiere.route.js"
+import matiereRoutes from "./routes/matiere.route.js";
+import authRoutes from "./routes/auth.routes.js";
 
 const app = express();
 
@@ -21,5 +22,6 @@ app.use("/api/user", usersRoutes);
 app.use("/api/enseignants" , enseignantsRoutes);
 app.use("/api/note", noteRoutes);
 app.use("/api/matiere", matiereRoutes);
+app.use("/api/auth",authRoutes);
 
 export default app;

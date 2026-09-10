@@ -1,0 +1,103 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    background-color: #f4f6f9;
+    align-items: center;
+    justify-content: center;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+
+#table.active {
+    display: grid;
+}
+
+#retoure{
+    text-decoration: none;
+    color: black;
+}
+#navbar{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid black;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    background: linear-gradient(135deg, #022B3A, #E1E5F2);
+    margin: 1rem 0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0.2px 4px rgba(0, 0, 0, 0.05);
+    color: #ffffff;
+}
+
+.menu{
+    display: flex;
+    background-color: #ffffff;
+    width: 80%;
+    border-radius: 10px;
+}
+
+#choix{
+    padding-left: 20px;
+    margin: 2rem;
+    border-bottom: 2px solid #64748b;
+    width: 95%;
+    display: flex;
+    align-items: center;
+
+}
+
+#choix button{
+    color: #64748b;
+    background-color: #ffffff;
+    border: 2px solid #ffffff;
+    font-weight: 600;
+    padding-bottom: 15px;
+    margin-right: 2rem;
+}
+
+#choix button:active{
+    color: #4a6cf7;
+    border-bottom-color: #4a6cf7;
+}
+
+#table {
+    width: 80%;
+    margin: 50px auto;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+}
+
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+
+

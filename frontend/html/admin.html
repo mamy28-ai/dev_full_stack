@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Directeur</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <nav id="navbar">
+        <h1>Directeur</h1>
+        <p>Bienvenue</p>
+        <a href="index.html" id="retoure">Retoure</a>
+    </nav>
+    <section class=" menu">
+        <div id="choix">
+            <button onclick="afficher('table')">tableau de bord</button>
+            <button onclick="afficher('statistique')">graphe statistique des notes</button>
+            <button onclick="afficher('ajouter')">ajout des inscription</button>
+        </div>  
+    </section>
+    <section id="table" class="page active">
+
+        <div class="card">
+
+            <div class="icon students">
+                <i class="fa-solid fa-user-graduate"></i>
+            </div>
+
+            <div>
+                <h3>Élèves</h3>
+                <h1>0</h1>
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon teachers">
+                <i class="fa-solid fa-chalkboard-user"></i>
+            </div>
+
+            <div>
+                <h3>Professeurs</h3>
+                <h1 id="totalProf">0</h1>
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon classes">
+                <i class="fa-solid fa-school"></i>
+            </div>
+
+            <div>
+                <h3>Classes</h3>
+                <h1 id="totalClasses">0</h1>
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon registration">
+                <i class="fa-solid fa-file-pen"></i>
+            </div>
+
+            <div>
+                <h3>Inscriptions</h3>
+                <h1>180</h1>
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="icon registration">
+                <i class="fa-solid fa-file-pen"></i>
+            </div>
+
+            <div>
+                <h3>Moyenne > 10</h3>
+                <h1 id="inf">0</h1>
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="icon registration">
+                <i class="fa-solid fa-file-pen"></i>
+            </div>
+
+            <div>
+                <h3>Moyenne < 10</h3>
+                <h1 id="sup">0</h1>
+            </div>
+
+        </div>
+
+    </section>
+    <section id="statistique" class="page">
+        <div class="graph-container">
+            <h2>Statistiques des notes des élèves</h2>
+        
+            <canvas id="graphNotes"></canvas>
+        </div>
+    </section>
+    <section id="ajouter" class="page"></section>
+
+    <script src="../js/admin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+</body>
+</html>
