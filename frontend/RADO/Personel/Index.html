@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gestion de l'école</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+ 
+<header class="topbar">
+  <div class="brand">Gestion de l'école</div>
+  <nav class="menu" id="menu">
+    <button class="menu-item active" data-panel="inscription">Inscription</button>
+    <button class="menu-item" data-panel="finances">Gestion financière</button>
+    <button class="menu-item" data-panel="dossiers">Dossiers élèves &amp; personnel</button>
+  </nav>
+  <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+</header>
+ 
+<div class="content">
+ 
+  <!-- ===== PANEL INSCRIPTION ===== -->
+  <section class="panel active" id="panel-inscription">
+    <div class="panel-title">
+      <h2 style="color:var(--ink)">Inscription</h2>
+      <p>Suivi des nouvelles inscriptions et des dossiers en attente</p>
+    </div>
+ 
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-label">Inscriptions — année en cours</div>
+        <div class="stat-value">312</div>
+        <div class="stat-note up">+18 depuis la rentrée</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Dossiers en attente de validation</div>
+        <div class="stat-value">9</div>
+        <div class="stat-note">à traiter cette semaine</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Places disponibles</div>
+        <div class="stat-value">27</div>
+        <div class="stat-note">toutes classes confondues</div>
+      </div>
+    </div>
+ 
+    <form class="form-card" id="inscriptionForm">
+      <div class="form-row">
+        <div class="field"><input type="text" placeholder="Nom de l'élève" required></div>
+        <div class="field"><input type="text" placeholder="Prénom" required></div>
+        <div class="field">
+          <select>
+            <option value="">Classe demandée</option>
+            <option>CI</option><option>CP</option><option>CE1</option><option>CE2</option>
+            <option>CM1</option><option>CM2</option><option>6ᵉ</option><option>5ᵉ</option>
+          </select>
+        </div>
+        <div class="field"><input type="text" placeholder="Nom du tuteur"></div>
+        <button type="submit" class="btn-add">Ajouter</button>
+      </div>
+    </form>
+ 
+    <div class="card">
+      <table>
+        <thead>
+          <tr><th>ID</th><th>Élève</th><th>Classe</th><th>Tuteur</th><th>Statut</th><th>Action</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>001</td><td>Rakoto Fitia</td><td>CM2</td><td>Rakoto Jean</td><td><span class="badge success">Validée</span></td><td><a href="#" class="action-link">Modifier</a><a href="#" class="action-link danger">Supprimer</a></td></tr>
+          <tr><td>002</td><td>Rabe Miora</td><td>6ᵉ</td><td>Rabe Solo</td><td><span class="badge warn">En attente</span></td><td><a href="#" class="action-link">Modifier</a><a href="#" class="action-link danger">Supprimer</a></td></tr>
+          <tr><td>003</td><td>Andria Naly</td><td>CE1</td><td>Andria Voahangy</td><td><span class="badge warn">En attente</span></td><td><a href="#" class="action-link">Modifier</a><a href="#" class="action-link danger">Supprimer</a></td></tr>
+          <tr><td>004</td><td>Rasolo Toky</td><td>5ᵉ</td><td>Rasolo Dera</td><td><span class="badge danger">Pièce manquante</span></td><td><a href="#" class="action-link">Modifier</a><a href="#" class="action-link danger">Supprimer</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+ 
+  <!-- ===== PANEL FINANCES ===== -->
+  <section class="panel" id="panel-finances">
+    <div class="panel-title">
+      <h2 style="color:var(--ink)">Gestion financière</h2>
+      <p>Recettes, dépenses et paiements des frais scolaires</p>
+    </div>
+ 
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-label">Recettes du mois</div>
+        <div class="stat-value">18 240 000 Ar</div>
+        <div class="stat-note up">+6% vs mois dernier</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Frais scolaires impayés</div>
+        <div class="stat-value">3 120 000 Ar</div>
+        <div class="stat-note down">21 familles concernées</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Dépenses du mois</div>
+        <div class="stat-value">9 860 000 Ar</div>
+        <div class="stat-note">fournitures, salaires, entretien</div>
+      </div>
+    </div>
+ 
+    <form class="form-card" id="financeForm">
+      <div class="form-row">
+        <div class="field"><input type="text" placeholder="Élève / Fournisseur" required></div>
+        <div class="field">
+          <select>
+            <option value="">Type</option>
+            <option>Frais de scolarité</option>
+            <option>Frais de cantine</option>
+            <option>Fournitures</option>
+            <option>Charges</option>
+          </select>
+        </div>
+        <div class="field"><input type="text" placeholder="Montant (Ar)"></div>
+        <div class="field"><input type="date"></div>
+        <button type="submit" class="btn-add">Ajouter</button>
+      </div>
+    </form>
+ 
+    <div class="card">
+      <table>
+        <thead>
+          <tr><th>Date</th><th>Élève / Fournisseur</th><th>Type</th><th>Montant</th><th>Statut</th><th>Action</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>01 sept. 2026</td><td>Rakoto Fitia</td><td>Frais de scolarité</td><td>150 000 Ar</td><td><span class="badge success">Payé</span></td><td><a href="#" class="action-link">Modifier</a><a href="#" class="action-link danger">Supprimer</a></td></tr>
+          <tr><td>02 sept. 2026</td><td>Papeterie Centrale</td><td>Fournitures</td><td>420 000 Ar</td><td><span class="badge success">Payé</span></td><td><a href="#" class="action-link">Modifier</a><a href="#" class="action-link danger">Supprimer</a></td></tr>
+          <tr><td>03 sept. 2026</td><td>Rabe Miora</td><td>Frais de cantine</td><td>60 000 Ar</td><td><span class="badge warn">En attente</span></td><td><a href="#" class="action-link">Modifier</a><a href="#" class="action-link danger">Supprimer</a></td></tr>
+          <tr><td>04 sept. 2026</td><td>Andria Naly</td><td>Frais de scolarité</td><td>150 000 Ar</td><td><span class="badge danger">Impayé</span></td><td><a href="#" class="action-link">Modifier</a><a href="#" class="action-link danger">Supprimer</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+ 
+  <!-- ===== PANEL DOSSIERS ===== -->
+  <section class="panel" id="panel-dossiers">
+    <div class="panel-title">
+      <h2 style="color:var(--ink)">Dossiers élèves &amp; personnel</h2>
+      <p>Consultation et mise à jour des dossiers administratifs</p>
+    </div>
+ 
+    <div class="subtabs">
+      <button class="subtab active" data-sub="eleves">Élèves</button>
+      <button class="subtab" data-sub="personnel">Personnel</button>
+    </div>
+ 
+    <div class="subpanel active" id="sub-eleves">
+      <form class="form-card" id="eleveForm">
+        <div class="form-row">
+          <div class="field"><input type="text" placeholder="Nom" required></div>
+          <div class="field"><input type="text" placeholder="Prénom" required></div>
+          <div class="field"><input type="text" placeholder="Classe"></div>
+          <div class="field"><input type="text" placeholder="Nom du tuteur"></div>
+          <button type="submit" class="btn-add">Ajouter</button>
+        </div>
+      </form>
+      <div class="card">
+        <table>
+          <thead>
+            <tr><th>ID</th><th>Nom</th><th>Classe</th><th>Tuteur</th><th>Dossier</th><th>Action</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>001</td><td>Rakoto Fitia</td><td>CM2</td><td>Rakoto Jean</td><td><span class="badge success">Complet</span></td><td><a href="#" class="action-link">Modifier</a><a href="#" class="action-link danger">Supprimer</a></td></tr>
+            <tr><td>002</td><td>Rabe Miora</td><td>6ᵉ</td><td>Rabe Solo</td><td><span class="badge success">Complet</span></td><td><a href="#" class="action-link">Modifier</a><a href="#" class="action-link danger">Supprimer</a></td></tr>
+            <tr><td>003</td><td>Andria Naly</td><td>CE1</td><td>Andria Voahangy</td><td><span class="badge warn">Incomplet</span></td><td><a href="#" class="action-link">Modifier</a><a href="#" class="action-link danger">Supprimer</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+ 
+    <div class="subpanel" id="sub-personnel">
+      <form class="form-card" id="personnelForm">
+        <div class="form-row">
+          <div class="field"><input type="text" placeholder="Nom" required></div>
+          <div class="field"><input type="text" placeholder="Prénom" required></div>
+          <div class="field"><input type="text" placeholder="Fonction"></div>
+          <div class="field">
+            <select>
+              <option value="">Contrat</option>
+              <option>CDI</option><option>CDD</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-add">Ajouter</button>
+        </div>
+      </form>
+      <div class="card">
+        <table>
+          <thead>
+            <tr><th>ID</th><th>Nom</th><th>Fonction</th><th>Contrat</th><th>Dossier</th><th>Action</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>001</td><td>Ravelo Sarah</td><td>Enseignante — CM2</td><td>CDI</td><td><span class="badge success">Complet</span></td><td><a href="#" class="action-link">Modifier</a><a href="#" class="action-link danger">Supprimer</a></td></tr>
+            <tr><td>002</td><td>Randria Bako</td><td>Enseignant — 6ᵉ</td><td>CDI</td><td><span class="badge success">Complet</span></td><td><a href="#" class="action-link">Modifier</a><a href="#" class="action-link danger">Supprimer</a></td></tr>
+            <tr><td>003</td><td>Zafy Nomena</td><td>Agent d'entretien</td><td>CDD</td><td><span class="badge warn">Incomplet</span></td><td><a href="#" class="action-link">Modifier</a><a href="#" class="action-link danger">Supprimer</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+ 
+</div>
+ 
+<script src="script.js"></script>
+</body>
+</html>
+ 
