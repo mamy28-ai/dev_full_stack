@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="D:\cal\AURIX\projets\dev_full_stack\frontend\css\enseignants.css">
+    <title>Enseignants</title>
+</head>
+<body>
+    <div class="dashboard">
+    <header>
+      <h1>Enseignants</h1>
+      <span>Bienvenue</span>
+      <a href="login.html" class="btn-deconnex">Deconnexion</a>
+    </header>
+   <section class="card section-enseignant">
+ 
+  <div class="tabs-header">
+    <button class="tab-btn active" onclick="switchTab('notes', event)">Saisie des Notes</button>
+    <button class="tab-btn" onclick="switchTab('presences' , event)">Gestion des Présences</button>
+    <button class="tab-btn" onclick="switchTab('cahier' , event)">Cahier de Texte</button>
+    <button class="tab-btn" onclick="switchTab('parents' , event)">Communication Parents</button>
+  </div>
+
+  <div id="tab-notes" class="tab-content active">
+    <h3>Saisie des Notes</h3>
+    <div class="filters">
+      <select id="notes-classe">
+        <option value="6M">Classe : 6ème</option>
+        <option value="5M">Classe : 5ème</option>
+        <option value="4M">Classe : 4ème</option>
+        <option value="3M">Classe : 3ème</option>
+        <option value="2N">Classe : 2nde</option>
+        <option value="1R">Classe : 1ère</option>
+        <option value="term">Classe : terminal</option>
+      </select>
+      <select id="notes-matiere">
+        <option value="1">Mathématiques</option>
+        <option value="2">Anglais</option>
+        <option value="3">Histoire-Géographie</option>
+        <option value="4">Physique-Chimie</option>
+        <option value="5">SVT</option>
+        <option value="6">Français</option>
+        <option value="7">Allemand (LV2)</option>
+        <option value="8">Philosophie</option>
+        <option value="9">EPS</option>
+      </select>
+    </div>
+    <hr>
+    <div class="table-responsive">
+      <table id="tableauResultats"  border="1">
+        <thead>
+          <tr>
+            <th>Numéro Élève</th>
+            <th>Note (/20)</th>
+            <th>Appréciation</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+          <tr>
+    <td>
+      
+      <input type="number" class="input-id-eleve" placeholder="Numéro">
+    </td>
+    <td><input type="number" class="input-note" min="0" max="20" step="0.5" placeholder="--"></td>
+    <td><input type="text" class="input-appreciation" placeholder="Remarque..."></td>
+    <td><button class="btn-primary" onclick="enregistrerNote(this)">Enregistrer</button></td>
+  </tr>
+</tbody>
+        <tbody>
+
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+
+  <div id="tab-presences" class="tab-content">
+    <!--<h3>Appel & Présences</h3>
+    <div class="filters">
+      <input type="date" id="date-presence">
+      <select id="presence-classe">
+        <option value="6M">Classe : 6ème</option>
+        <option value="5M">Classe : 5ème</option>
+        <option value="4M">Classe : 4ème</option>
+        <option value="3M">Classe : 3ème</option>
+        <option value="2N">Classe : 2nde</option>
+        <option value="1R">Classe : 1ère</option>
+        <option value="term">Classe : terminal</option>
+      </select>
+    </div>
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Numero</th>
+            <th>Élève</th>
+            <th>Justificatif</th>
+            <th>Statut</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="number" class="input-number" min="1" max="30"></td>
+            <td><input type="text" class="input-text" placeholder="prenom"></td>
+            <td><input type="text" class="input-text" placeholder="Ex: Motif médical"></td>
+            <td>
+                <select class="select-statut">
+                    <option value="present">Présent</option>
+                    <option value="absent">Absent</option>
+                    <option value="retard">En retard</option>
+                </select>
+            </td>
+            <td><button class="btn-primary" onclick="validerPresence(101, this)">Valider</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="tab-cahier" class="tab-content">
+                <h3>Cahier de Texte</h3>
+                <form id="formCahier" onsubmit="ajouterDevoir(event)">
+                    <div class="form-group">
+                        <label for="eleve-cahier">Élève :</label>
+                        <input type="text" id="eleve-cahier" class="input-text" placeholder="Prénom & Nom">
+                    </div>
+                    <div class="form-group">
+                        <label for="date-cahier">Pour le :</label>
+                        <input type="date" id="date-cahier" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contenu-cahier">Travail à faire / Contenu du cours :</label>
+                        <textarea id="contenu-cahier" rows="3" placeholder="Description des exercices ou leçons..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Publier au cahier de texte</button>
+                </form>
+            </div>
+
+  <div id="tab-parents" class="tab-content">
+    <h3>Message aux Parents</h3>
+    <form id="formCom" onsubmit="envoyerMessageParent(event)">
+      <div class="form-group">
+        <label>Parent de l'élève :</label>
+        <input type="text" class="input-text" placeholder="Nom & Prenom">
+      </div>
+      <div class="form-group">
+        <label>Objet du message :</label>
+        <input type="text" placeholder="Ex: Comportement / Absence non justifiée" required>
+      </div>
+      <div class="form-group">
+        <label>Message :</label>
+        <textarea rows="4" placeholder="Rédigez votre message ici..." required></textarea>
+      </div>
+      <button type="submit" class="btn-primary">Envoyer le message</button>
+    </form>
+  </div>-->
+</section>
+<script src="D:\cal\AURIX\projets\dev_full_stack\frontend\js\enseignants.js"></script>
+</body>
+</html>
