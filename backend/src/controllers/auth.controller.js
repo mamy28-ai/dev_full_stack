@@ -25,8 +25,6 @@ export async function login(req, res) {
         }
 
         const user = result.rows[0];
-
-        // Comparer le mot de passe
         const passwordCorrect = await bcrypt.compare(
             mot_de_passe,
             user.mot_de_passe
@@ -37,8 +35,6 @@ export async function login(req, res) {
                 message: "Email ou mot de passe incorrect"
             });
         }
-
-        // Créer le token
         const token = jwt.sign(
             {
                 id: user.id_utilisateur,
@@ -67,6 +63,58 @@ export async function login(req, res) {
         console.error(error);
 
         res.status(500).json({
+            message: "Erreur serveur"
+        });
+    }
+}
+
+export async function signup(req, res) {
+
+    try {
+        const pool = createPool();
+        const { nom, prenom, email, password, role } = req.body;
+        if (!nom || !prenom || !email || !password || !role) {
+            return res.status(400).json({
+                message: "Tous les champs sont obligatoires"
+            });
+        }
+        const userExist = await pool.query(
+            "SELECT * FROM utilisateurs WHERE email = $1",
+            [email]
+        );
+        if (userExist.rows.length > 0) {
+            return res.status(409).json({
+                message: "Cet email est déjà utilisé"
+            });
+        }
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const result = await pool.query(
+            `INSERT INTO utilisateurs
+            (nom, prenom, email, mot_de_passe, role, actif)
+            VALUES ($1, $2, $3, $4, $5, $6)
+            RETURNING id_utilisateur, nom, prenom, email, role, actif`,
+            [
+                nom,
+                prenom,
+                email,
+                hashedPassword,
+                role,
+                false
+            ]
+        );
+
+
+        return res.status(201).json({
+            message: "Compte créé avec succès. En attente de validation par l'administrateur.",
+            user: result.rows[0]
+        });
+
+
+    } catch (error) {
+
+        console.error("Erreur signup :", error);
+
+        return res.status(500).json({
             message: "Erreur serveur"
         });
     }

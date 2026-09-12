@@ -5,9 +5,9 @@ import profsRoutes from "./routes/profs.routes.js";
 import elevesRoutes from "./routes/eleves.routes.js";
 import classesRoutes from "./routes/classes.routes.js";
 import usersRoutes from "./routes/users.routes.js";
-import enseignantsRoutes from "./routes/enseignants.rotutes.js";
+import enseignantsRoutes from "./routes/enseignants.routes.js";
 import noteRoutes from "./routes/note.routes.js";
-import matiereRoutes from "./routes/matiere.route.js";
+import matiereRoutes from "./routes/matiere.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 
 const app = express();

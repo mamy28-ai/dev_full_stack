@@ -476,3 +476,7 @@ CREATE TABLE notifications (
     FOREIGN KEY (id_utilisateur) REFERENCES utilisateurs(id_utilisateur) ON DELETE CASCADE
 );
 
+
+UPDATE utilisateurs
+SET actif = FALSE
+WHERE role != 'ADMIN';

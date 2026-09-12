@@ -26,7 +26,7 @@ async function entre() {
 
         const data = await response.json();
         console.log("Status :", response.status);
-console.log("Réponse serveur :", data);
+        console.log("Réponse serveur :", data);
 
         if (!response.ok) {
 
@@ -35,25 +35,24 @@ console.log("Réponse serveur :", data);
 
             return;
         }
-
-        // Sauvegarder le token JWT
         localStorage.setItem("token", data.token);
-
-        // Sauvegarder les informations de l'utilisateur
         localStorage.setItem(
             "user",
             JSON.stringify(data.user)
         );
-
-        // Aller vers la page principale
-        window.location.href = "index.html";
+        if(data.user.role==="ADMIN"){
+            window.location.href = "index.html";
+        }else if(data.user.role==="PARENT"){
+            window.location.href = "parent.html";
+        }else if(data.user.role==="PROF"){
+            window.location.href = "enseignants.html";
+        }else {
+            window.location.href = "eleves.html"
+        }
 
     } catch (err) {
-
         console.error(err);
-
         error.textContent = "Une erreur est survenue";
-
     }
 } 
 

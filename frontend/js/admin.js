@@ -48,7 +48,7 @@ const inf = document.getElementById("inf");
 async function afficherStatistiquesNotes() {
     try {
         const response = await fetch(
-            "http://localhost:3000/api/notes"
+            "http://localhost:3000/api/note"
         );
         if (!response.ok) {
             throw new Error("Erreur lors de la récupération des notes");
@@ -66,49 +66,234 @@ async function afficherStatistiquesNotes() {
 
 afficherStatistiquesNotes();
 
-async function chargerGraphiqueNotes() {
+let graphiqueNotes = null;
+let toutesLesNotes = [];
+
+async function chargerNotesParMatiere() {
+    const select = document.getElementById("choixMatiere");
 
     try {
-        const response = await fetch(
-            "http://localhost:3000/api/notes"
-        );
+        const response = await fetch("http://localhost:3000/api/note");
+
+        if (!response.ok) {
+            throw new Error(`Erreur ${response.status} : impossible de récupérer les notes`);
+        }
 
         const notes = await response.json();
 
-        console.log(notes);
+        if (!Array.isArray(notes)) {
+            throw new Error("Format de réponse inattendu (tableau attendu)");
+        }
 
-        const labels = notes.map(note => note.nom);
-        const valeurs = notes.map(note => note.note);
+        toutesLesNotes = notes;
+        console.log("Notes :", notes);
+        const matieres = [...new Set(notes.map(note => note.matiere))].sort();
+        select.innerHTML = '<option value="">Choisir une matière</option>';
 
-        new Chart(document.getElementById("graphNotes"), {
+        matieres.forEach(matiere => {
+            const option = document.createElement("option");
+            option.value = matiere;
+            option.textContent = matiere;
+            select.appendChild(option);
+        });
 
-            type: "bar",
+    } catch (error) {
+        console.error("Erreur :", error);
+        select.innerHTML = '<option value="">Erreur de chargement des notes</option>';
+    }
+}
 
-            data: {
-                labels: labels,
+function afficherGraphique(notes, matiereChoisie) {
+    const canvas = document.getElementById("graphNotes");
 
-                datasets: [{
-                    label: "Notes des élèves",
-                    data: valeurs,
-                    borderWidth: 1
-                }]
-            },
+    if (!matiereChoisie) {
+        if (graphiqueNotes) {
+            graphiqueNotes.destroy();
+            graphiqueNotes = null;
+        }
+        return;
+    }
 
-            options: {
-                responsive: true,
+    // Garder seulement les notes de la matière choisie, triées par note décroissante
+    const notesMatiere = notes
+        .filter(note => note.matiere === matiereChoisie)
+        .sort((a, b) => Number(b.note) - Number(a.note));
 
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 20
-                    }
+    const labels = notesMatiere.map(note => `${note.nom} ${note.prenom}`);
+    const valeurs = notesMatiere.map(note => Number(note.note));
+
+    if (graphiqueNotes) {
+        graphiqueNotes.destroy();
+    }
+
+    graphiqueNotes = new Chart(canvas, {
+        type: "bar",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: `Notes en ${matiereChoisie}`,
+                data: valeurs,
+                backgroundColor: "#6C63FF",
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 20,
+                    title: { display: true, text: "Note /20" }
                 }
             }
-        });
+        }
+    });
+}
+
+
+document.getElementById("choixMatiere").addEventListener("change", function () {
+    afficherGraphique(toutesLesNotes, this.value);
+});
+
+
+chargerNotesParMatiere();
+
+const attente= document.getElementById("totalAttente");
+
+async function afficherTotalAttente() {
+    try {
+        const response = await fetch("http://localhost:3000/api/user/attente");
+        if (!response.ok) {
+            throw new Error("Erreur lors de la récupération des classes");
+        }
+        const data = await response.json();
+        attente.textContent = data.length;
 
     } catch (error) {
         console.error("Erreur :", error);
     }
 }
 
-chargerGraphiqueNotes();
+afficherTotalAttente();
+
+
+async function chargerUser() {
+
+    try {
+
+        const response = await fetch("http://localhost:3000/api/user/attente");
+
+        if (!response.ok) {
+            throw new Error("Erreur HTTP : " + response.status);
+        }
+
+        const user = await response.json();
+
+        console.log("Professeurs reçus :", user);
+
+        const liste = document.getElementById("listeComptes");
+
+        if (!liste) {
+            throw new Error("L'élément #listeProfs n'existe pas dans le HTML");
+        }
+
+        liste.innerHTML = "";
+
+        user.forEach(utilisateurs => {
+
+            liste.innerHTML += `
+                <tr>
+                    <td>${utilisateurs.nom}</td>
+                    <td>${utilisateurs.prenom}</td>
+                    <td>${utilisateurs.email}</td>
+                    <td>${utilisateurs.role}</td>
+                    <td>${utilisateurs.date_creation}</td>
+                    <td>${utilisateurs.actif}</td>
+                    <td><button onclick="valide(${utilisateurs.id_utilisateur})" id="valid"><i class="fa-solid fa-check"></i></button>
+                    <td><button onclick="supprimerUser(${utilisateurs.id_utilisateur})"><i class="fa-solid fa-trash"></i></i></button>
+                </tr>
+            `;
+
+        });
+
+    } catch (error) {
+
+        console.error("Erreur :", error);
+
+    }
+}
+chargerUser();
+async function supprimerUser(id) {
+
+    const confirmation= confirm(
+        "Voulez-vous vraiment supprimer ce compte ?"
+    );
+
+    if(!confirmation){
+        return;
+    }
+    
+    try{
+        const response= await fetch(`http://localhost:3000/api/user/${id}`,
+            {
+                method: "DELETE"
+
+            }
+        );
+
+        const data= await response.json();
+        if(response.ok){
+            alert("le compte est supprimer");
+            chargerUser();
+        }else {
+
+            alert("Erreur : " + (data.error || data.message));
+
+        }
+
+    }catch(error){
+        console.error("Erreur :", error);
+
+        alert("Impossible de contacter le serveur.");   
+    }
+}
+
+chargerUser();
+
+async function valide(id) {
+    try{
+        const response = await fetch(
+            `http://localhost:3000/api/user/valide/${id}`,
+            {method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
+        );
+        const data = await response.json();
+
+        if (response.ok) {
+
+            alert(data.message);
+
+            afficherTotalAttente();
+            chargerUser();
+
+        } else {
+
+            alert(data.message || "Erreur lors de la validation");
+
+        }
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert("Impossible de contacter le serveur");
+
+    }
+}
+
+afficherTotalAttente();
+
+

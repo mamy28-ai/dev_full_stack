@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="F:\Aurix formation\devoir\frontend\css\stylesheet.css">
+    <link rel="stylesheet" href="..\css\stylesheet.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 </head>
 <body>
@@ -29,7 +29,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#enseignants">
+                    <a href="enseignants.html">
                         <span class="icon"><i class="fa-solid fa-chalkboard-user"></i></span>
                         <span class="label">Enseignants</span>
                     </a>
@@ -41,7 +41,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#eleves">
+                    <a href="eleves.html">
                         <span class="icon"><i class="fa-solid fa-graduation-cap"></i></span>
                         <span class="label">Elèves</span>
                     </a>
@@ -91,13 +91,26 @@
     
          </section>
     <section id="Elèves" class="page">
-        
-            <input type="text" placeholder="Nom de l'élève " required>
-            <input type="text" placeholder="Prénom"required>
-            <input type="date" required>
-            <input type="number" placeholder="id_classe"required>
-            <button onclick="mettre('ajoute')">Ajoute</button>
-        
+        <form id="formEleve">
+            <input type="text"  id="nom" placeholder="Nom de l'élève " required>
+            <input type="text" id="prenom"  placeholder="Prénom"required>
+            <input type="date" id="date" required>
+            <input type="number" id="id" placeholder="id_classe"required>
+            <button type="submit">Ajoute</button>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>date de naissance</th>
+                    <th>ID_classe</th>
+                    <th>Action</th>
+                </tr>
+                <tbody id="ListEleve"></tbody>
+            </thead>
+            
+        </table>
 
     </section>
     <section id="Classes" class="page">
@@ -128,7 +141,7 @@
     <section id="Note" class="page">
         <input type="text">
     </section>
-    <script src="F:\Aurix formation\devoir\frontend\js\auth.js"></script>
-    <script src="F:\Aurix formation\devoir\frontend\js\app.js"></script>
+    <script src="..\js\auth.js"></script>
+    <script src="..\js\app.js"></script>
 </body>
 </html>

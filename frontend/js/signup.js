@@ -6,6 +6,7 @@ signupForm.addEventListener("submit", async function (event) {
 
     event.preventDefault();
     const nom = document.getElementById("nom").value;
+    const prenom = document.getElementById("prenom").value;
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById("confirmPassword").value;
@@ -35,6 +36,7 @@ signupForm.addEventListener("submit", async function (event) {
 
                 body: JSON.stringify({
                     nom: nom,
+                    prenom: prenom,
                     email: email,
                     password: password,
                     role:role

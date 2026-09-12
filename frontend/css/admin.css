@@ -35,7 +35,7 @@ body{
     border: 1px solid black;
     justify-content: space-between;
     align-items: center;
-    width: 80%;
+    width: 85%;
     background: linear-gradient(135deg, #022B3A, #E1E5F2);
     margin: 1rem 0;
     padding: 20px;
@@ -47,7 +47,7 @@ body{
 .menu{
     display: flex;
     background-color: #ffffff;
-    width: 80%;
+    width: 85%;
     border-radius: 10px;
 }
 
@@ -101,3 +101,295 @@ body{
 
 
 
+#ajouter {
+    width: 80%;
+    margin: 30px auto;
+}
+
+
+/* CONTENEUR */
+
+.confirmation-container {
+    width: 100%;
+}
+
+
+/* EN-TÊTE */
+
+.confirmation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: white;
+    padding: 25px;
+
+    border-radius: 15px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+
+    margin-bottom: 25px;
+}
+
+.confirmation-header h2 {
+    color: #022B3A;
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.confirmation-header p {
+    color: #64748b;
+}
+
+
+/* BADGE COMPTE */
+
+.compte-badge {
+    background: #E1E5F2;
+    color: #022B3A;
+
+    padding: 12px 18px;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+
+    text-align: center;
+}
+
+.compte-badge span {
+    display: block;
+
+    font-size: 22px;
+}
+
+
+/* CONTENEUR TABLEAU */
+
+.table-container {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+
+    overflow-x: auto;
+}
+
+
+/* TABLE */
+
+.confirmation-table {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+
+.confirmation-table th {
+    padding: 15px;
+
+    text-align: left;
+
+    color: #022B3A;
+
+    background-color: #E1E5F2;
+
+    font-size: 14px;
+}
+
+
+.confirmation-table th:first-child {
+    border-radius: 8px 0 0 8px;
+}
+
+.confirmation-table th:last-child {
+    border-radius: 0 8px 8px 0;
+}
+
+
+.confirmation-table td {
+    padding: 15px;
+
+    border-bottom: 1px solid #E1E5F2;
+
+    color: #475569;
+}
+
+
+.confirmation-table tbody tr {
+    transition: 0.3s;
+}
+
+
+.confirmation-table tbody tr:hover {
+    background-color: #f4f6f9;
+}
+
+
+/* ROLE */
+
+.role {
+    display: inline-block;
+
+    background-color: #E1E5F2;
+
+    color: #022B3A;
+
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+
+/* STATUT EN ATTENTE */
+
+.statut-attente {
+    display: inline-block;
+
+    background-color: #fff3cd;
+
+    color: #856404;
+
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+
+/* BOUTON ACCEPTER */
+
+.btn-accepter {
+    border: none;
+
+    padding: 9px 14px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    background-color: #16a34a;
+
+    color: white;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+
+    margin-right: 5px;
+}
+
+.btn-accepter:hover {
+    transform: translateY(-2px);
+
+    opacity: 0.9;
+}
+
+
+/* BOUTON REFUSER */
+
+.btn-refuser {
+    border: none;
+
+    padding: 9px 14px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    background-color: #dc2626;
+
+    color: white;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.btn-refuser:hover {
+    transform: translateY(-2px);
+
+    opacity: 0.9;
+}
+
+
+/* RESPONSIVE */
+
+@media screen and (max-width: 768px) {
+
+    #ajouter {
+        width: 95%;
+    }
+
+    .confirmation-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
+    }
+
+    .compte-badge {
+        width: 100%;
+    }
+
+    .table-container {
+        padding: 15px;
+    }
+
+}
+
+#statistique {
+    width: 80%;
+    margin: 30px auto;
+}
+
+.graph-container {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.graph-container h2 {
+    color: #022B3A;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+#choixMatiere {
+    padding: 10px 15px;
+    margin-bottom: 25px;
+    border: 2px solid #E1E5F2;
+    border-radius: 10px;
+    background-color: #ffffff;
+    color: #022B3A;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#choixMatiere:hover {
+    border-color: #4a6cf7;
+}
+
+#choixMatiere:focus {
+    outline: none;
+    border-color: #4a6cf7;
+}
+
+#graphNotes {
+    width: 100% !important;
+    max-height: 400px;
+}

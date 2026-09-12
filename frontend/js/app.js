@@ -484,3 +484,107 @@ try{
 
 
 }
+
+//ELEVE
+
+document.getElementById("formEleve").addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    const nom = document.getElementById("nom").value;
+    const prenom = document.getElementById("prenom").value;
+    const date = document.getElementById("date").value;   
+    const  classe= document.getElementById("id").value;
+
+    try {
+
+        const response = await fetch("http://localhost:3000/api/eleves", {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                nom: nom,
+                prenom: prenom,
+                date_naissance: date,
+                id_classe: classe
+            })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+
+            alert("Elève ajouté avec succès !");
+
+            document.getElementById("formEleve").reset();
+
+            chargerEleve();
+
+        } else {
+
+            alert("Erreur : " + (data.message || data.error));
+
+        }
+
+    } catch (error) {
+
+        console.error("Erreur :", error);
+        alert("Impossible de contacter le serveur.");
+
+    }
+});
+
+async function chargerEleve() {
+
+    try {
+
+        const response = await fetch("http://localhost:3000/api/eleves");
+
+        if (!response.ok) {
+            throw new Error("Erreur HTTP : " + response.status);
+        }
+
+        const eleve = await response.json();
+
+        console.log("Elève reçus :", eleve);
+
+        const liste = document.getElementById("ListEleve");
+
+        if (!liste) {
+            throw new Error("L'élément #ListEleve n'existe pas dans le HTML");
+        }
+
+        liste.innerHTML = "";
+
+        eleve.forEach(eleves => {
+
+            liste.innerHTML += `
+                <tr>
+                    <td>${eleves.nom}</td>
+                    <td>${eleves.prenom}</td>
+                    <td>${eleves.date_naissance}</td>
+                    <td>${eleves.id_classe}</td>
+                    <td>
+                        <button onclick="supprimerEleve(${eleves.id_eleves})" id="sup">
+                        <i class="fa-solid fa-trash"></i>
+                        </button>
+                        <button onclick="editEleve(${eleves.id_eleves})" id="edit">
+                        <i class="fa-solid fa-pen"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+
+        });
+
+    } catch (error) {
+
+        console.error("Erreur :", error);
+
+    }
+}
+
+chargerEleve();

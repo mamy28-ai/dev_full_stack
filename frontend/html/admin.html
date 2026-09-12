@@ -85,7 +85,7 @@
             </div>
 
             <div>
-                <h3>Moyenne > 10</h3>
+                <h3>Moyenne < 10</h3>
                 <h1 id="inf">0</h1>
             </div>
 
@@ -98,7 +98,7 @@
             </div>
 
             <div>
-                <h3>Moyenne < 10</h3>
+                <h3>Moyenne  ≥ 10</h3>
                 <h1 id="sup">0</h1>
             </div>
 
@@ -108,14 +108,60 @@
     <section id="statistique" class="page">
         <div class="graph-container">
             <h2>Statistiques des notes des élèves</h2>
-        
+            <select id="choixMatiere">
+                <option value="">Choisir une matière</option>
+                <option value="PARENT">Mathematique</option>
+                <option value="ELEVE">Elève</option>
+                <option value="PROF">Professeur</option>
+            </select>
             <canvas id="graphNotes"></canvas>
         </div>
     </section>
-    <section id="ajouter" class="page"></section>
+    <section id="ajouter" class="page">
 
-    <script src="../js/admin.js"></script>
+        <div class="confirmation-container">
+    
+            <div class="confirmation-header">
+                <div>
+                    <h2>Confirmation des comptes</h2>
+                    <p>Gérez les demandes d'inscription des utilisateurs.</p>
+                </div>
+    
+                <div class="compte-badge">
+                    <span id="totalAttente">0</span>
+                    en attente
+                </div>
+            </div>
+    
+    
+            <!-- Tableau des comptes -->
+            <div class="table-container">
+    
+                <table class="confirmation-table">
+    
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Email</th>
+                            <th>Rôle</th>
+                            <th>Date d'inscription</th>
+                            <th>Statut</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+    
+                    <tbody id="listeComptes"></tbody>
+    
+                </table>
+    
+            </div>
+    
+        </div>
+    
+    </section>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/admin.js"></script>
     
 </body>
 </html>

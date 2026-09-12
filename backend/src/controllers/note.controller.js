@@ -78,3 +78,27 @@ export async function deleteNote(req, res) {
     res.status(500).json({ error: error.message });
   }
 }
+
+export async function getGraphNote(req, res) {
+  try {
+    const pool = createPool(); 
+    const result = await pool.query(`
+      SELECT
+        n.id_note,
+        n.note,
+        n.date_note,
+        e.id_eleve,
+        e.nom,
+        e.prenom,
+        m.id_matiere,
+        m.nom_matiere AS matiere
+      FROM note n
+      JOIN élèves e ON e.id_eleve = n.id_eleve
+      JOIN matiere m ON m.id_matiere = n.id_matiere
+      ORDER BY m.nom_matiere, n.note DESC
+    `);
+    res.json(result.rows);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
