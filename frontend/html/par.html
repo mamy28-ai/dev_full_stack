@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Espace Parent</title>
+<link rel="stylesheet" href="C:\projet\dev_full_stack\frontend\css\style-commun.css">
+</head>
+<body>
+
+<div class="header">
+  <h1>Espace Parent</h1>
+  <span class="bienvenue">Bienvenue</span>
+  <button class="btn-deconnexion">Déconnexion</button>
+</div>
+
+<div class="page-container">
+  <div class="card">
+
+    <div class="tabs">
+      <button class="tab active" onclick="afficherOnglet('notes', this)">Notes de suivi</button>
+      <button class="tab" onclick="afficherOnglet('absences', this)">Absences</button>
+      <button class="tab" onclick="afficherOnglet('paiements', this)">Paiements</button>
+      <button class="tab" onclick="afficherOnglet('messages', this)">Messages</button>
+    </div>
+
+    <div class="tab-content" id="notes">
+      <h2>Notes de suivi</h2>
+      <p>Ici s'affiche le suivi des notes de l'élève.</p>
+    </div>
+
+    <div class="tab-content" id="absences" style="display:none;">
+      <h2>Absences</h2>
+      <p>Ici s'affiche la liste des absences.</p>
+    </div>
+
+    <div class="tab-content" id="paiements" style="display:none;">
+      <h2>Paiements</h2>
+      <p>Ici s'affiche l'historique des paiements.</p>
+    </div>
+
+    <div class="tab-content" id="messages" style="display:none;">
+      <h2>Messages</h2>
+      <p>Ici s'affichent les messages envoyés par les enseignants.</p>
+    </div>
+
+  </div>
+</div>
+
+<script src="C:\projet\dev_full_stack\frontend\js\script-commun.js"></script>
+<script src="C:\projet\dev_full_stack\frontend\js\parents.js"></script>
+
+</body>
+</html>

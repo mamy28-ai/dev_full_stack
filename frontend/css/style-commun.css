@@ -1,0 +1,146 @@
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+  background: #f4f6f8;
+  color: #2c3e50;
+}
+
+/* ---- HEADER (bandeau sombre en haut) ---- */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(90deg, #2c3e50, #3d566e);
+  color: #ffffff;
+  padding: 18px 30px;
+}
+
+.header h1 {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.header .bienvenue {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 15px;
+  opacity: 0.9;
+}
+
+.header .btn-deconnexion {
+  background: #ffffff;
+  color: #2c3e50;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ---- CONTAINER / CARD principale ---- */
+.page-container {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+/* ---- NAVIGATION PAR ONGLETS (tabs) ---- */
+.tabs {
+  display: flex;
+  gap: 30px;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 20px 25px 0 25px;
+}
+
+.tab {
+  background: none;
+  border: none;
+  font-size: 15px;
+  color: #5a6b7b;
+  padding-bottom: 14px;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.tab:hover {
+  color: #4c6ef5;
+}
+
+.tab.active {
+  color: #4c6ef5;
+  border-bottom-color: #4c6ef5;
+  font-weight: 600;
+}
+
+/* ---- CONTENU DE L'ONGLET ---- */
+.tab-content {
+  padding: 30px 25px;
+}
+
+.tab-content h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+/* ---- CHAMPS DE FORMULAIRE ---- */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #4a5a6a;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d9dee3;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #2c3e50;
+}
+
+.form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* ---- BOUTON PRINCIPAL (bleu/violet) ---- */
+.btn-primary {
+  background: #4c6ef5;
+  color: #ffffff;
+  border: none;
+  padding: 12px 26px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: #3f5be0;
+}
+
+.btn-deconnexion:hover {
+  background: #f5f104;
+}
